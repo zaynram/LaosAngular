@@ -1,4 +1,3 @@
-// src/app/features/form/components/review-page/review-page.component.ts
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Question, FormData } from '../../../../shared/models/form.model';
 
