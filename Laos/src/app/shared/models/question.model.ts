@@ -39,19 +39,78 @@ export interface FormattedAddress {
     full: string;
 }
 
-export interface CaseAnalysis {
-    description: string;
-    type: string;
+export type Client = CaseParty;
+export type Opposing = CaseParty;
+
+export interface CaseParty {
+    identity: Person;
+    role: "pet" | "res" | null;
+}
+
+export interface CaseStaff {
+    paralegal: Paralegal | Paralegal[];
+    attorney: Counselor;
+}
+
+export interface User {
+    residence: Address;
+    phone: string;
+    email: string;
+    identity: Client | Opposing | Counselor | Paralegal ;
+
+}
+
+export interface Counselor {
+    person: StaffMember | Person;
+    represents: Client | Opposing;
+    license: string | StaffID;
+}
+
+export type StaffID = number;
+
+export interface StaffMember {
+    staff_id: StaffID;
+    identity: Person;
+}
+
+export interface Paralegal {
+    person: StaffMember;
+}
+
+export type other = 'other';
+
+export interface Person {
+    name: string;
+    id: number;     // unique identifier
+    dob: Date;
+}
+
+export interface child {
+    identity: Person;
+    parent: CaseParty | CaseParty[];
+}
+
+export type parent = 'parent';
+export type spouse = 'spouse';
+export type sibling = 'sibling';
+
+
+
+export interface Relationship {
+    id: string; 
+    relation: child | parent | spouse | sibling | other;                                  
+    askForInfo: boolean;
+}
+
+export interface Case {
+    description_input: string;
+    category: string;
     parties: {
-        user: string;
-        opposing: string;
+        user: User;
+        client: Client;
+        opposing: Opposing 
     };
     complexity: number;
-    timeline: string;
-    recent_filing: string;
-    relationships: Array<{
-        relation: string;
-        name: string | null;
-        ask_for_id: boolean;
-    }>;
+    recent_filing: Record<string, Date | null> | null;
+    relationships: Relationship[];
 }

@@ -31,7 +31,11 @@ describe('AddressInputComponent', () => {
 
   it('should call search on input', () => {
     const testValue = '123 Main St';
-    component.onInput({ target: { value: testValue } } as any);
+    const mockInput = document.createElement('input');
+    mockInput.value = testValue;
+    const mockEvent = new Event('input');
+    Object.defineProperty(mockEvent, 'target', { value: mockInput });
+    component.onInput(mockEvent);
     expect(mockAddressService.search).toHaveBeenCalledWith(testValue);
   });
 });

@@ -4,13 +4,14 @@ import { ProgressBarService } from '../../../../shared/services/progress-bar.ser
 
 @Component({
   selector: 'app-saved-form-banner',
+  standalone: true,
   templateUrl: './saved-form-banner.component.html',
   styleUrls: ['./saved-form-banner.component.scss']
 })
 export class SavedFormBannerComponent {
   @Input() formId!: string;
   @Input() lastUpdated!: string;
-  @Output() reset = new EventEmitter<void>();
+  @Output() formReset = new EventEmitter<void>();
   isOpen = false;
 
   constructor(private progressBarService: ProgressBarService) {}
@@ -25,6 +26,6 @@ export class SavedFormBannerComponent {
   }
 
   onReset() {
-    this.reset.emit();
+    this.formReset.emit();
   }
 }

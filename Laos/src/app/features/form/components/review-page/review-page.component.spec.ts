@@ -37,10 +37,10 @@ describe('ReviewPageComponent', () => {
   });
 
   it('should emit submit event on submit button click', () => {
-    spyOn(component.submit, 'emit');
+    spyOn(component.formSubmit, 'emit');
     const submitButton = fixture.debugElement.query(By.css('.submit-button')).nativeElement;
     submitButton.click();
-    expect(component.submit.emit).toHaveBeenCalled();
+    expect(component.formSubmit.emit).toHaveBeenCalled();
   });
 
   it('should emit inputChange event on input change', () => {

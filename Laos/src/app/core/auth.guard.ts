@@ -1,10 +1,13 @@
 // src/app/core/auth.guard.ts
 import { Injectable } from '@angular/core';
 import { 
-  CanActivate, ActivatedRouteSnapshot, 
-  RouterStateSnapshot, Router 
+  CanActivate, 
+  ActivatedRouteSnapshot, 
+  RouterStateSnapshot, 
+  Router,
+  UrlTree 
 } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 import { PersistenceService } from '../shared/services/persistence.service';
 
 @Injectable({
@@ -12,29 +15,29 @@ import { PersistenceService } from '../shared/services/persistence.service';
 })
 export class AuthGuard implements CanActivate {
   constructor(
-    private persistence: PersistenceService,
-    private router: Router
+    private readonly persistence: PersistenceService,
+    private readonly router: Router
   ) {}
 
   canActivate(
     route: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot
-  ): Observable<boolean> | Promise<boolean> | boolean {
-    // Check if there's a form in progress
+    _state: RouterStateSnapshot
+  ): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const formId = route.queryParams['formId'];
-    if (formId) {
-      return this.persistence.loadProgress(formId).then(progress => {
-        if (!progress) {
-          // Redirect to new form if no saved progress found
-          this.router.navigate(['/'], {
-            queryParams: {},
-            replaceUrl: true
-          });
-          return false;
-        }
-        return true;
-      });
+    
+    console.log('state', _state);
+
+    if (!formId) {
+      return true;
     }
-    return true;
+
+    return from(this.persistence.loadProgress(formId).then(progress => {
+      if (!progress) {
+        return this.router.createUrlTree(['/'], {
+          queryParams: {}
+        });
+      }
+      return true;
+    }));
   }
 }

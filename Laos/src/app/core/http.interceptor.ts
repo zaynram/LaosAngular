@@ -13,9 +13,9 @@ export class HttpRequestInterceptor implements HttpInterceptor {
   constructor(private notificationService: NotificationService) {}
 
   intercept(
-    request: HttpRequest<any>,
+    request: HttpRequest<unknown>,
     next: HttpHandler
-  ): Observable<HttpEvent<any>> {
+  ): Observable<HttpEvent<unknown>> {
     // Add common headers
     const modifiedRequest = request.clone({
       setHeaders: {
@@ -25,7 +25,7 @@ export class HttpRequestInterceptor implements HttpInterceptor {
     });
 
     return next.handle(modifiedRequest).pipe(
-      tap((event: HttpEvent<any>) => {
+      tap((event: HttpEvent<unknown>) => {
         if (event instanceof HttpResponse) {
           // Handle successful responses
           if (event.status === 201) {

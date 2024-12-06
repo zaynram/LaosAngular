@@ -21,10 +21,8 @@ export interface FormProgress {
   formData: FormData;
   lastQuestionIndex: number;
   lastAnsweredQuestionIndex: number;
-  lastUpdated: string;
+  lastUpdated: Date;
 }
 
-export interface FormData {
-  [key: string]: string | undefined;
-}
+export type FormData = Record<string, string | undefined>;
 

@@ -13,6 +13,15 @@ export interface Notification {
   providedIn: 'root'
 })
 export class NotificationService {
+  private initialized = false;
+
+  init(): void {
+    if (this.initialized) {
+      return;
+    }
+    this.initialized = true;
+  }
+
   private notification = new BehaviorSubject<Notification | null>(null);
   private timeout: number | null = null;
 
@@ -20,7 +29,7 @@ export class NotificationService {
     return this.notification.asObservable();
   }
 
-  show(message: string, type: NotificationType = 'info', duration: number = 3000): void {
+  show(message: string, type: NotificationType = 'info', duration: number | null = 3000): void {
     if (this.timeout) {
       window.clearTimeout(this.timeout);
     }
@@ -30,7 +39,7 @@ export class NotificationService {
     this.timeout = window.setTimeout(() => {
       this.notification.next(null);
       this.timeout = null;
-    }, duration);
+    }, duration ?? 3000);
   }
 
   clear(): void {

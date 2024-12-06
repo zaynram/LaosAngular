@@ -1,7 +1,12 @@
 <div class="address-input">
     <input type="text" [formControl]="addressInput" (input)="onInput($event)" />
     <ul>
-      <li *ngFor="let suggestion of suggestions$ | async" (click)="selectAddress(suggestion)">
+      <li *ngFor="let suggestion of suggestions$ | async" 
+          [tabindex]="0"
+          (click)="selectAddress(suggestion)"
+          (keydown.enter)="selectAddress(suggestion)"
+          role="option"
+          [attr.aria-selected]="false">
         {{ suggestion.address }}, {{ suggestion.city }}, {{ suggestion.state }} {{ suggestion.zipCode }}
       </li>
     </ul>

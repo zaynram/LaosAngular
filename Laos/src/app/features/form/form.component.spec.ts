@@ -70,4 +70,9 @@ describe('FormComponent', () => {
     await component.handleSubmit();
     expect(notificationService.show).toHaveBeenCalledWith('Error submitting form', 'error');
   });
+
+  it('should update progress when form data changes', () => {
+    component.formData = { question1: 'answer1' };
+    expect(progressBarService.updateProgress).toHaveBeenCalled();
+  });
 });

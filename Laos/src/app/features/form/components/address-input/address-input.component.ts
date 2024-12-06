@@ -15,7 +15,14 @@ export class AddressInputComponent implements OnInit {
 
   constructor(private addressService: AddressService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Subscribe to address input changes to trigger search
+    this.addressInput.valueChanges.subscribe(value => {
+      if (value) {
+        this.addressService.search(value);
+      }
+    });
+  }
 
   onInput(event: Event): void {
     const input = event.target as HTMLInputElement;

@@ -13,9 +13,9 @@ import { Question, FormData } from '../../shared/models/form.model';
 })
 export class FormComponent implements OnInit {
   currentQuestion: Question | null = null;
+  lastUpdated: Date = new Date();
   formData: FormData = {};
   formId: string | null = null;
-  lastUpdated: string = '';
   isAnalyzing = false;
   showIntro = true;
   validationErrors: Record<string, string> = {};
@@ -55,7 +55,7 @@ export class FormComponent implements OnInit {
         this.navigateToQuestion(this.currentQuestionIndex);
       }
     } catch (error) {
-      this.notificationService.show('Error loading form', 'error');
+      this.notificationService.show('Error loading form: ' + (error as Error).message, 'error');
     }
   }
 
@@ -80,7 +80,7 @@ export class FormComponent implements OnInit {
       this.questions = [...this.questions, ...dynamicQuestions];
       this.isAnalyzing = false;
     } catch (error) {
-      this.notificationService.show('Error analyzing case', 'error');
+      this.notificationService.show('Error analyzing case: ' + (error as Error).message, 'error');
       this.isAnalyzing = false;
     }
   }
@@ -107,7 +107,7 @@ export class FormComponent implements OnInit {
   handleReset() {
     this.formData = {};
     this.formId = null;
-    this.lastUpdated = '';
+    this.lastUpdated = new Date();
     this.currentQuestionIndex = 0;
     this.showIntro = true;
     this.formService.clearProgress();
@@ -121,7 +121,7 @@ export class FormComponent implements OnInit {
       this.notificationService.show('Form submitted successfully!', 'success');
       this.handleReset();
     } catch (error) {
-      this.notificationService.show('Error submitting form', 'error');
+      this.notificationService.show('Error submitting form: ' + (error as Error).message, 'error');
     } finally {
       this.isSubmitting = false;
     }

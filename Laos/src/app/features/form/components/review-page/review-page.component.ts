@@ -10,7 +10,7 @@ export class ReviewPageComponent {
   @Input() questions: Question[] = [];
   @Input() formData: FormData = {};
   @Input() isSubmitting = false;
-  @Output() submit = new EventEmitter<void>();
+  @Output() formSubmit = new EventEmitter<void>();
   @Output() inputChange = new EventEmitter<{questionId: string, value: string}>();
 
   getAnsweredQuestions(): Question[] {
@@ -18,7 +18,7 @@ export class ReviewPageComponent {
   }
 
   onSubmit() {
-    this.submit.emit();
+    this.formSubmit.emit();
   }
 
   onInputChange(questionId: string, event: Event) {

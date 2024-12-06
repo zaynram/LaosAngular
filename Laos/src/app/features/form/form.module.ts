@@ -11,18 +11,17 @@ import { AddressInputComponent } from './components/address-input/address-input.
 import { SavedFormBannerComponent } from './components/saved-form-banner/saved-form-banner.component';
 
 @NgModule({
-  declarations: [
+  declarations: [],
+  imports: [
     FormComponent,
-    QuestionInputComponent,
+    CommonModule,
+    ReactiveFormsModule,
+    FormRoutingModule,
     ReviewPageComponent,
+    QuestionInputComponent,
     RadioOptionsComponent,
     AddressInputComponent,
     SavedFormBannerComponent
-  ],
-  imports: [
-    CommonModule,
-    ReactiveFormsModule,
-    FormRoutingModule
   ],
   exports: [FormComponent]
 })

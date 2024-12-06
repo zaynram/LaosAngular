@@ -9,8 +9,8 @@ import { Question } from '../../../../shared/models/form.model';
 })
 export class RadioOptionsComponent {
   @Input() question!: Question;
-  @Input() savedValue: string = '';
-  @Input() hasError: boolean = false;
+  @Input() savedValue: string | null = '';
+  @Input() hasError: boolean | null = false;
   @Output() optionSelect = new EventEmitter<{questionId: string, value: string}>();
 
   onSelect(value: string) {

@@ -35,6 +35,7 @@ describe('ProgressBarComponent', () => {
 
   it('should display the correct progress', () => {
     const progressFill = fixture.nativeElement.querySelector('.progress-fill');
+    expect(progressBarService.getProgress).toHaveBeenCalled();
     expect(progressFill.style.width).toBe('75%');
   });
 

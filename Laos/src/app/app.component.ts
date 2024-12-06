@@ -19,9 +19,10 @@ export class AppComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    // Initialize any app-wide services or state
+    this.notificationService.init();
+    this.progressBarService.init();
+    console.log('AppComponent initialized');
   }
-
   onNotificationClose() {
     this.notificationService.clear();
   }

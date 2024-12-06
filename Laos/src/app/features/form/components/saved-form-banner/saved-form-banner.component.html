@@ -1,16 +1,18 @@
 <!-- src/app/features/form/components/saved-form-banner/saved-form-banner.component.html -->
-<button class="progress-trigger" (click)="isOpen = true">
+<div class="banner">
+  Last updated: {{lastUpdated | date:'medium'}}
+</div>
+<button class="progress-trigger" (click.keypress)="isOpen = true" (keyup.enter)="isOpen = true" tabindex="0">
   <div class="save-status">
     <div class="pulse"></div>
     Session Info
   </div>
 </button>
-
-<div *ngIf="isOpen" class="modal-overlay" (click)="isOpen = false">
-  <div class="modal" (click)="$event.stopPropagation()">
+<div *ngIf="isOpen" class="modal-overlay" (click.keypress)="isOpen = false" (keyup.enter)="isOpen = false" tabindex="0">
+  <div class="modal" (click.keypress)="$event.stopPropagation()">
     <div class="modal-header">
       <h3>Form Progress</h3>
-      <button class="close-button" (click)="isOpen = false">✕</button>
+      <button class="close-button" (click.keypress)="isOpen = false" (keyup.enter)="isOpen = false" tabindex="0">✕</button>
     </div>
 
     <div class="modal-content">
@@ -35,7 +37,7 @@
           readonly
           [value]="location.origin + location.pathname + '?formId=' + formId"
         >
-        <button class="copy-button" (click)="copyFormLink()">
+        <button class="copy-button" (click.keypress)="copyFormLink()" (keyup.enter)="copyFormLink()" tabindex="0">
           Copy Link
         </button>
       </div>
@@ -44,7 +46,7 @@
         Save this link to resume your form later.
       </div>
 
-      <button class="reset-button" (click)="onReset()">
+      <button class="reset-button" (click.keypress)="onReset()" (keyup.enter)="onReset()" tabindex="0">
         Reset Form
       </button>
     </div>

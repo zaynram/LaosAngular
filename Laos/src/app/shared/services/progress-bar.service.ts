@@ -6,6 +6,15 @@ import { BehaviorSubject, Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ProgressBarService {
+  private initialized = false;
+
+  init(): void {
+    if (this.initialized) {
+      return;
+    }
+    this.initialized = true;
+    this.progress.next(0);
+  }
   private progress = new BehaviorSubject<number>(0);
 
   setProgress(value: number): void {

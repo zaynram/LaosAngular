@@ -8,13 +8,13 @@ describe('SavedFormBannerComponent', () => {
   let component: SavedFormBannerComponent;
   let fixture: ComponentFixture<SavedFormBannerComponent>;
   let progressBarService: jasmine.SpyObj<ProgressBarService>;
-
+  
   beforeEach(async () => {
     const progressSpy = jasmine.createSpyObj('ProgressBarService', ['getProgress']);
     progressSpy.getProgress.and.returnValue(new BehaviorSubject(50));
 
     await TestBed.configureTestingModule({
-      declarations: [SavedFormBannerComponent],
+      imports: [SavedFormBannerComponent],
       providers: [
         { provide: ProgressBarService, useValue: progressSpy }
       ]
@@ -41,15 +41,23 @@ describe('SavedFormBannerComponent', () => {
   });
 
   it('should emit reset event on reset button click', () => {
-    spyOn(component.reset, 'emit');
+    spyOn(component.formReset, 'emit');
     const resetButton = fixture.nativeElement.querySelector('.reset-button');
     resetButton.click();
-    expect(component.reset.emit).toHaveBeenCalled();
+    expect(component.formReset.emit).toHaveBeenCalled();
   });
 
   it('should copy form link to clipboard', () => {
     spyOn(navigator.clipboard, 'writeText');
     component.copyFormLink();
     expect(navigator.clipboard.writeText).toHaveBeenCalledWith(`${window.location.origin}${window.location.pathname}?formId=testFormId`);
+  });
+
+  it('should get progress from ProgressBarService', () => {
+    const progress = component.progress;
+    expect(progressBarService.getProgress).toHaveBeenCalled();
+    progress.subscribe(value => {
+      expect(value).toBe(50);
+    });
   });
 });

@@ -1,0 +1,58 @@
+cp1:
+	target_wage: "$20.00"
+	components:
+		base_form:
+			priority: high
+			components:
+				requires_modification: [
+					
+				]
+				in_progress: [
+					UI,
+					Address Suggestions,
+					Input Handling,
+					Answer Review,
+					Progress Saving/Loading
+				]
+				need_implementation: [
+					
+					CF Workers,
+					Form Submission,
+					Form Review
+				]
+				completed: [
+
+					Form Validation,
+					Form Layout,
+					Form Styling
+				]
+
+		question_generation:
+			priority: medium
+			components:
+				in_progress: [
+
+				]
+				need_implementation: [
+					
+					Question Generation,
+					Answer Generation
+				]
+				completed: [
+					
+				]
+
+		submission_handling:
+			priority: low
+			components:
+				in_progress: [
+
+				]
+				need_implementation: [
+					
+					Submission Handling,
+					Answer Handling
+				]
+				completed: [
+
+				]

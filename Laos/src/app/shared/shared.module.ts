@@ -5,10 +5,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ProgressBarComponent } from './components/progress-bar/progress-bar.component';
 
 @NgModule({
-  declarations: [
-    ProgressBarComponent
-  ],
+  declarations: [],
   imports: [
+    ProgressBarComponent,
     CommonModule,
     ReactiveFormsModule
   ],

@@ -40,8 +40,8 @@ export class WorkersService {
    * @param text - The case description text to analyze.
    * @returns An observable containing the analysis result.
    */
-  analyzeCaseDescription(text: string): Observable<any> {
-    return this.http.post<any>(`${this.workersURL}/api/analyze-case`, { caseDescription: text })
+  analyzeCaseDescription(text: string): Observable<unknown> {
+    return this.http.post<unknown>(`${this.workersURL}/api/analyze-case`, { caseDescription: text })
       .pipe(
         catchError(this.handleError)
       );

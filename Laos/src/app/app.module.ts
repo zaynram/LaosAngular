@@ -8,10 +8,9 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [],
   imports: [
+    AppComponent,
     BrowserModule,
     AppRoutingModule,
     CoreModule,

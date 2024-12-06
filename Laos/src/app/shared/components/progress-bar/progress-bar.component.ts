@@ -8,9 +8,9 @@ import { ProgressBarService } from '../../services/progress-bar.service';
   styleUrls: ['./progress-bar.component.scss']
 })
 export class ProgressBarComponent {
-  @Input() height: number = 8;
-  @Input() backgroundColor: string = '#ddd';
-  @Input() progressColor: string = 'var(--primary-accent)';
+  @Input() height = 8;
+  @Input() backgroundColor = '#ddd';
+  @Input() progressColor = 'var(--primary-accent)';
 
   constructor(private progressBarService: ProgressBarService) {}
 
