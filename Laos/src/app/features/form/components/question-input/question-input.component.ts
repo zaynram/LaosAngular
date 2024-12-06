@@ -1,4 +1,3 @@
-// src/app/features/form/components/question-input/question-input.component.ts
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { Question } from '../../../../shared/models/form.model';
 
@@ -9,8 +8,8 @@ import { Question } from '../../../../shared/models/form.model';
 })
 export class QuestionInputComponent {
   @Input() question!: Question;
-  @Input() value: string = '';
-  @Input() hasError: boolean = false;
+  @Input() value = '';
+  @Input() hasError = false;
   @Output() valueChange = new EventEmitter<string>();
   @Output() enter = new EventEmitter<void>();
 
