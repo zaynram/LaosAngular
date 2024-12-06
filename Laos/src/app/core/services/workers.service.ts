@@ -15,23 +15,26 @@ export interface AddressSuggestion {
   providedIn: 'root'
 })
 export class WorkersService {
-  private readonly apiUrl = environment.workerUrl;
+  private readonly workersURL = environment.workerUrl;
 
   constructor(private http: HttpClient) {}
 
+  // Fetch address suggestions based on a query string
   getAddressSuggestions(query: string): Observable<{ suggestions: AddressSuggestion[] }> {
     const params = new HttpParams().set('query', query);
     return this.http.get<{ suggestions: AddressSuggestion[] }>(
-      `${this.apiUrl}/address-suggestions`,
+      `${this.workersURL}/address-suggestions`,
       { params }
     );
   }
 
+  // Analyze a case description and return the analysis result
   analyzeCaseDescription(text: string): Observable<any> {
-    return this.http.post(`${this.apiUrl}/api/analyze-case`, { caseDescription: text });
+    return this.http.post(`${this.workersURL}/api/analyze-case`, { caseDescription: text });
   }
 
+  // Check the health status of the API
   checkHealth(): Observable<{ status: string }> {
-    return this.http.get<{ status: string }>(`${this.apiUrl}/api/health`);
+    return this.http.get<{ status: string }>(`${this.workersURL}/api/health`);
   }
 }
