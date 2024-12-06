@@ -1,4 +1,3 @@
-// src/app/features/form/components/question-input/question-input.component.spec.ts
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { QuestionInputComponent } from './question-input.component';
 import { provideRouter } from '@angular/router';
