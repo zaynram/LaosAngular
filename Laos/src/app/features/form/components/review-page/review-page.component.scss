@@ -1,0 +1,29 @@
+.review-page {
+  padding: 1rem;
+}
+
+.answers-review {
+  margin-bottom: 1.5rem;
+}
+
+.answer-item {
+  margin-bottom: 1rem;
+}
+
+.submit-section {
+  text-align: center;
+}
+
+.submit-button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--primary-accent);
+  color: #fff;
+  cursor: pointer;
+}
+
+.submit-button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}

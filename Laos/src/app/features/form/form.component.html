@@ -1,0 +1,44 @@
+<!-- src/app/features/form/form.component.html -->
+<div class="form-container">
+    <ng-container *ngIf="showIntro">
+      <p id="intro-text">This form will help us understand your situation better. Please answer the following questions honestly.</p>
+      <button (click)="handleBegin()">Begin</button>
+    </ng-container>
+  
+    <ng-container *ngIf="currentQuestion">
+      <div class="question-container">
+        <h4>{{currentQuestion.text}}</h4>
+        
+        <ng-container [ngSwitch]="currentQuestion.type">
+          <app-radio-options 
+            *ngSwitchCase="'radio'"
+            [question]="currentQuestion"
+            [savedValue]="formData[currentQuestion.id]"
+            [hasError]="!!validationErrors[currentQuestion.id]"
+            (optionSelect)="handleInputChange($event.questionId, $event.value)">
+          </app-radio-options>
+  
+          <app-question-input 
+            *ngSwitchDefault
+            [question]="currentQuestion"
+            [value]="formData[currentQuestion.id]"
+            [hasError]="!!validationErrors[currentQuestion.id]"
+            (valueChange)="handleInputChange(currentQuestion.id, $event)"
+            (enter)="handleNext()">
+          </app-question-input>
+        </ng-container>
+  
+        <div class="navigation-buttons">
+          <button (click)="handlePrevious()">&lsaquo;</button>
+          <button (click)="handleNext()">&rsaquo;</button>
+        </div>
+      </div>
+    </ng-container>
+  
+    <app-saved-form-banner
+      *ngIf="formId"
+      [formId]="formId"
+      [lastUpdated]="lastUpdated"
+      (reset)="handleReset()">
+    </app-saved-form-banner>
+  </div>

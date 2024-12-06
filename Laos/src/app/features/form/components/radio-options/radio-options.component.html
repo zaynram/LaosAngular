@@ -1,0 +1,18 @@
+<!-- src/app/features/form/components/radio-options/radio-options.component.html -->
+<div class="options-container" [class.has-error]="hasError">
+  <div *ngFor="let option of question.options" class="option">
+    <input 
+      type="radio"
+      [id]="option.value"
+      [name]="question.id"
+      [value]="option.value"
+      [checked]="savedValue === option.value"
+      (change)="onSelect(option.value)">
+    <label [for]="option.value">
+      {{option.label}}
+    </label>
+  </div>
+  <div *ngIf="hasError" class="error-message">
+    Please select an option
+  </div>
+</div>

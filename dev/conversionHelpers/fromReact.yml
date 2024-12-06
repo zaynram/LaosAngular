@@ -1,0 +1,96 @@
+# App Capabilities using React Framework:
+
+# 1. App.tsx: The main component that serves as the entry point for the React application.
+# 2. index.tsx: The entry point for the React application, where the main component is rendered.
+# 3. CSS files: Styles for different components and layouts in the application.
+# 4. Components: Organized into subdirectories based on functionality, making it easier to manage and maintain.
+# 5. Contexts: Used for managing global state and sharing data between components.
+# 6. Data: Contains data files used in the application, such as questions for a form.
+# 7. Hooks: Custom hooks for handling form validation, navigation, notifications, persistence, dynamic questions, and analysis.
+# 8. Services: Contains service files for specific functionalities, such as reporting web vitals.
+# 9. Types: Type definitions for the application to ensure type safety and improve code quality.
+# 10. Package.json: Contains dependencies and scripts for the React application.
+# 11. tsconfig.json: TypeScript configuration file for the React application.
+# 12. .gitignore: Specifies files and directories to be ignored by Git, such as node_modules and build artifacts.
+
+# React File Structure Explanation:
+
+directories:
+  public:
+    description: Contains static files that are served directly
+    files:
+      index.html: The main HTML file for the React application
+      manifest.json: The web app manifest file
+
+  src:
+    description: Contains the source code for the React application
+    files:
+      App.tsx: The main App component
+      index.tsx: The entry point for the React application
+    subdirectories:
+      styles:
+        description: Contains CSS files for styling the application
+        files:
+          App.css: Styles for the App component
+          index.css: Global styles for the application
+        subdirectories:
+          form:
+            files:
+              layout.css: Styles for form layout
+              address-suggestions.css: Styles for address suggestions
+              inputs.css: Styles for form inputs
+              radio.css: Styles for radio options
+              buttons.css: Styles for buttons
+              review.css: Styles for the review page
+              saved-form-banner.css: Styles for the saved form banner
+              responsive.css: Responsive styles for the form
+          components:
+            files:
+              notification.css: Styles for notifications
+              modal.css: Styles for modals
+              progress.css: Styles for progress bars
+              debug.css: Styles for debug components
+
+      components:
+        subdirectories:
+          form:
+            files:
+              Form.tsx: The main form component
+              QuestionInput.tsx: Component for question input
+              ReviewPage.tsx: Component for the review page
+              RadioOptions.tsx: Component for radio options
+              SavedFormBanner.tsx: Component for the saved form banner
+          debug:
+            files:
+              CaseDebugger.tsx: Component for debugging cases
+
+      contexts:
+        files:
+          NotificationContext.tsx: Context provider for notifications
+          ProgressBarContext.tsx: Context provider for the progress bar
+
+      data:
+        files:
+          questions.ts: Data file for questions
+
+      hooks:
+        files:
+          useFormValidation.ts: Hook for form validation
+          useQuestionNavigation.ts: Hook for question navigation
+          useNotification.ts: Hook for notifications
+          useFormPersistence.ts: Hook for form persistence
+          useDynamicQuestions.ts: Hook for dynamic questions
+          useAnalysis.ts: Hook for analysis
+
+      services:
+        files:
+          reportWebVitals.ts: Service for reporting web vitals
+
+      types:
+        files:
+          types.ts: Type definitions for the application
+
+root_files:
+  package.json: Contains the dependencies and scripts for the React application
+  tsconfig.json: TypeScript configuration file
+  .gitignore: Specifies files and directories to be ignored by Git

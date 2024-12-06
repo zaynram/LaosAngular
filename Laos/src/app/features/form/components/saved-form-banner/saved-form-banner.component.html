@@ -1,0 +1,52 @@
+<!-- src/app/features/form/components/saved-form-banner/saved-form-banner.component.html -->
+<button class="progress-trigger" (click)="isOpen = true">
+  <div class="save-status">
+    <div class="pulse"></div>
+    Session Info
+  </div>
+</button>
+
+<div *ngIf="isOpen" class="modal-overlay" (click)="isOpen = false">
+  <div class="modal" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Form Progress</h3>
+      <button class="close-button" (click)="isOpen = false">✕</button>
+    </div>
+
+    <div class="modal-content">
+      <div class="progress-info">
+        <app-progress-bar
+          [height]="6"
+          backgroundColor="#eee"
+          progressColor="var(--primary-accent)">
+        </app-progress-bar>
+        
+        <div class="progress-info-container">
+          Last updated: {{lastUpdated | date:'medium'}}
+          <p class="progress-text">
+            {{progress | async | number:'1.0-0'}}% Complete
+          </p>
+        </div>
+      </div>
+
+      <div class="link-container">
+        <input
+          type="text"
+          readonly
+          [value]="location.origin + location.pathname + '?formId=' + formId"
+        >
+        <button class="copy-button" (click)="copyFormLink()">
+          Copy Link
+        </button>
+      </div>
+
+      <div class="notice">
+        Save this link to resume your form later.
+      </div>
+
+      <button class="reset-button" (click)="onReset()">
+        Reset Form
+      </button>
+    </div>
+  </div>
+</div>

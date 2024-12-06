@@ -1,0 +1,95 @@
+# App Capabilities using Angular Framework:
+
+# 1. app.component.ts: The main component that serves as the entry point for the Angular application
+# 2. main.ts: The entry point for the Angular application, where the main module is bootstrapped
+# 3. SCSS files: Styles for different components and layouts in the application
+# 4. Components: Organized into features and shared modules for better maintainability
+# 5. Services: Used for managing state and sharing data between components
+# 6. Data: Contains data files used in the application, such as questions for forms
+# 7. Models: Type definitions and interfaces for the application
+# 8. Environment: Configuration files for different environments
+# 9. Package.json: Contains dependencies and scripts for the Angular application
+# 10. angular.json: Angular workspace configuration file
+# 11. tsconfig.json: TypeScript configuration files
+# 12. .gitignore: Specifies files and directories to be ignored by Git
+
+# Angular File Structure Explanation:
+
+
+
+directories: 
+    src:
+        description: Contains the source code for the Angular application
+        files:
+            main.ts: Entry point for bootstrapping the Angular application 
+            index.html: Main HTML file
+            polyfills.ts: Browser polyfills
+            test.ts: Test setup file # Added for Angular testing
+        subdirectories:
+            app:
+                description: Main application code
+                files:
+                    app.component.ts: Root component
+                    app.component.html: Root component template  
+                    app.component.scss: Root component styles
+                    app.module.ts: Main application module
+                    app-routing.module.ts: Application routing configuration
+                subdirectories:
+                    core: 
+                        description: Core functionality loaded once
+                        files:
+                            core.module.ts: Core module definition
+                            auth.guard.ts: Authentication guard
+                            http.interceptor.ts: HTTP Interceptor
+                    features:
+                        form:
+                            description: Form feature module
+                            files:
+                                form.component.ts: Main form component
+                                form.component.html: Main form template
+                                form.module.ts: Form feature module
+                                form-routing.module.ts: Form routing 
+                            components: 
+                                files:
+                                    question-input: Question input component
+                                    question-input.component.html: Question input template
+                                    review-page: Review page component
+                        subdirectories:
+                            components:
+                                notification:
+                                    files:
+                                        notification.component.ts: Notification component
+                                        notification.component.html: Notification template
+                                progress-bar:
+                                    files:
+                                        progress-bar.component.ts: Progress bar component  
+                                        progress-bar.component.html: Progress bar template
+                            services:
+                                files:
+                                    form.service.ts: Form handling service
+                                    notification.service.ts: Notification service
+                                    progress-bar.service.ts: Progress bar service
+                            models:
+                                files:
+                                    form.model.ts: Form related interfaces
+                                    question.model.ts: Question related interfaces
+
+            styles:
+                description: Global and component styles
+                files:
+                    app.component.scss: Root component styles
+                    styles.scss: Global styles
+
+            environments:
+                description: Environment configurations
+                files:
+                    environment.ts: Development config
+                    environment.prod.ts: Production config
+
+root_files:
+    package.json: Project dependencies and scripts
+    angular.json: Angular workspace config  
+    tsconfig.json: Base TypeScript config
+    tsconfig.app.json: App-specific TypeScript config
+    karma.conf.js: Karma test runner config
+    eslint.config.js: ESLint configuration

@@ -1,0 +1,22 @@
+name = "laos"
+main = "./src/address-search.js"
+account_id = "d252167b5f50b7c883ffa04446b9bac3"
+workers_dev = true
+compatibility_date = "2024-01-01"
+
+[env.preview]
+zaraz = true
+zaraz_events = ["address_search", "address_search_error"]
+
+[env.production]
+routes = [
+  { pattern = "app.ccn8n.org/api", custom_domain = true }
+]
+zaraz = true
+zaraz_events = ["address_search", "address_search_error"]
+
+[configuration]
+cors = true
+cors_headers = ["Content-Type", "Authorization"]
+cors_methods = ["GET", "POST", "OPTIONS"]
+cors_origins = ["http://localhost:4200", "https://app.ccn8n.org"]

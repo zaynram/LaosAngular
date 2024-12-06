@@ -1,0 +1,14 @@
+<!-- src/app/features/form/components/question-input/question-input.component.html -->
+<div class="input-wrapper" [class.has-error]="hasError">
+  <input
+    [type]="question.type"
+    [placeholder]="question.placeholder || ''"
+    [value]="value"
+    (input)="onInput($event)"
+    (keyup)="onKeyUp($event)"
+    [required]="question.required"
+  >
+  <div *ngIf="hasError" class="error-message">
+    Please provide a valid answer
+  </div>
+</div>

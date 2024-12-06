@@ -1,0 +1,23 @@
+<!-- src/app/features/form/components/review-page/review-page.component.html -->
+<div class="review-page">
+  <div class="answers-review">
+    <div *ngFor="let question of getAnsweredQuestions()" class="answer-item">
+      <h4>{{question.text}}</h4>
+      <input
+        [type]="question.type"
+        [value]="formData[question.id]"
+        (input)="onInputChange(question.id, $event)"
+      >
+    </div>
+  </div>
+
+  <div class="submit-section">
+    <button 
+      (click)="onSubmit()"
+      [disabled]="isSubmitting"
+      class="submit-button"
+    >
+      {{ isSubmitting ? 'Submitting...' : 'Submit' }}
+    </button>
+  </div>
+</div>
