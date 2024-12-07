@@ -1,10 +1,12 @@
 // src/app/shared/services/form.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, take, last, lastValueFrom } from 'rxjs';
 import { FormData, Question, FormProgress } from '../models/form.model';
 import { ValidationErrors } from '../models/validation.model';
 import { environment } from '../../../environments/environment';
+import { of, from } from 'rxjs';
+import { map, catchError, tap, throwError } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -40,27 +42,32 @@ export class FormService {
     this.currentQuestionIndex.next(index);
   }
 
-  async saveProgress(formData: FormData, currentIndex: number): Promise<string> {
+  resetFormData(): void {
+    this.formData.next({});
+    this.currentQuestionIndex.next(0);
+  }
+
+  saveProgress(formData: FormData, currentIndex: number): Observable<string> {
     const formId = localStorage.getItem('currentFormId') ?? `form_${Date.now()}`;
     const progress: FormProgress = {
       formId,
       formData,
       lastQuestionIndex: currentIndex,
       lastAnsweredQuestionIndex: currentIndex,
-      lastUpdated: new Date().toISOString()
+      lastUpdated: new Date()
     };
     
     localStorage.setItem(`form_progress_${formId}`, JSON.stringify(progress));
     localStorage.setItem('currentFormId', formId);
-    return formId;
+    return of(formId);
   }
 
-  async loadProgress(formId: string): Promise<FormProgress | null> {
+  loadProgress(formId: string): Observable<FormProgress | null> {
     const saved = localStorage.getItem(`form_progress_${formId}`);
     if (saved) {
-      return JSON.parse(saved) as FormProgress;
+      return of(JSON.parse(saved) as FormProgress);
     }
-    return null;
+    return of(null);
   }
 
   clearProgress(): void {
@@ -71,31 +78,32 @@ export class FormService {
     }
   }
 
-  async generateDynamicQuestions(caseDescription: string): Promise<Question[]> {
-    try {
-      const response = await this.http.post<{questions: Question[]}>(
-        `${environment.apiUrl}/analyze-case`,
-        { description: caseDescription }
-      ).toPromise();
-      return response?.questions || [];
-    } catch (error) {
-      console.error('Error generating dynamic questions:', error);
-      throw error;
-    }
+  generateDynamicQuestions(caseDescription: string): Observable<Question[]> {
+    return this.http.post<{questions: Question[]}>(
+      `${environment.apiUrl}/analyze-case`,
+      { description: caseDescription }
+    ).pipe(
+      take(1),
+      map(response => response.questions || []),
+      catchError(error => {
+        console.error('Error generating dynamic questions:', error);
+        return of([]);
+      })
+    );
   }
 
-  async submitForm(data: FormData): Promise<any> {
-    try {
-      const response = await this.http.post(
-        `${environment.apiUrl}/submit-form`,
-        data
-      ).toPromise();
-      this.clearProgress();
-      return response;
-    } catch (error) {
-      console.error('Error submitting form:', error);
-      throw error;
-    }
+  submitForm(data: FormData): Observable<any> {
+    return this.http.post(
+      `${environment.apiUrl}/submit-form`,
+      data
+    ).pipe(
+      take(1),
+      tap(() => this.clearProgress()),
+      catchError(error => {
+        console.error('Error submitting form:', error);
+        return throwError(error);
+      })
+    );
   }
 
   validateForm(data: FormData, questions: Question[]): ValidationErrors {

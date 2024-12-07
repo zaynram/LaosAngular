@@ -1,0 +1,3 @@
+script,status,cost,total_tokens,prompt_tokens,completion_tokens,trace,version
+system.agent_linter,success,0,0,0,0,,1.81.1
+system.proofread,success,0,0,0,0,,1.81.1

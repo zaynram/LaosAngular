@@ -1,4 +1,5 @@
 # Laos Angular Project
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/7e3cd8fdfac64f62a59598822b738fed)](https://app.codacy.com?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
 
 This project is an Angular application configured to work with Laos Workers.
 

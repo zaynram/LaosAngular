@@ -55,3 +55,16 @@ describe('WorkersService', () => {
     req.flush(mockResponse);
   });
 });
+it('should analyze case description', () => {
+  const mockResponse = { analysis: 'positive' };
+  const caseDescription = 'Sample case description';
+
+  service.analyzeCaseDescription(caseDescription).subscribe(response => {
+    expect(response).toEqual(mockResponse);
+  });
+
+  const req = httpMock.expectOne(`${environment.workerUrl}/api/analyze-case`);
+  expect(req.request.method).toBe('POST');
+  expect(req.request.body).toEqual({ caseDescription });
+  req.flush(mockResponse);
+});

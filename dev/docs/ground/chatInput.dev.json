@@ -1,0 +1,185 @@
+{
+    "System 1 Overview": {
+
+        "Overview": "Law OS (Laos) is a legal case management system designed to streamline the usage, intake, analysis, and processing of legal documents. The planned subsystems in my project are: Intelligent Intake Form+ (what I've been asking about this whole time), Dynamic Case Management Interface, and AI Chat Suite (provides quick access to document generation protocols, fine-tuned information extraction from cases in our database, notification subscription / unsubscription for case events, etc.) For the modules in Intelligent Intake Form+ it uses ${Chosen Framework TBD} for the frontend, Cloudflare Workers for backend processing, and integrates with external services like court systems and Supabase for storage. The Intelligent Intake system (and its Frontend / Backend Implementations) is/are the core focus of Stage One. In brief, it collects personal and case information, analyzes text input with AI, retrieves relevant documents, preprocesses and maps document variables, generates questions for null attributes, and allows review and editing before submission. This document outlines the implementation process for each component and the overall system.",
+        "Framework Stack Compatability Dependencies": {
+            "Postgres": "framework stack must support usage of Postgres",
+            "Cloudflare Workers SDK": "framework stack must support usage of Cloudflare Workers SDK",
+            "Cloudflare Serverless Platform": "framework stack must support deployment to Cloudflare Workers",
+            "Cloudflare KV": "framework stack must support usage of Cloudflare KV",
+            "Cloudflare Durable Objects": "framework stack must support usage of Cloudflare Durable Objects",
+            "Cloudflare Pages": "framework stack must support deployment to Cloudflare Pages",
+            "Cloudflare Workers Sites": "framework stack must support deployment to Cloudflare Workers Sites"
+        },
+        "Frontend": {
+            "Components": [
+                "User Interface: Develop a responsive and accessible interface for client interaction.",
+                "Form Management: Implement dynamic forms with progress indicators.",
+                "Client-side Validation: Ensure data integrity with clear error messages."
+            ],
+            "Pseudo Code Summaries": [
+                "Develop UI components.",
+                "Implement dynamic forms.",
+                "Add client-side validation.",
+                "Ensure responsive design.",
+                "Add progress indicators.",
+                "Implement user-friendly error handling."
+            ]
+        },
+        "Backend": {
+            "Services": [
+                "AI Analysis: Extract case attributes from user input.",
+                "Document Processing: Retrieve and preprocess legal documents.",
+                "Database Operations: Manage Supabase interactions."
+            ],
+            "Pseudo Code Summaries": [
+                "Implement AI analysis.",
+                "Develop document processing services.",
+                "Manage database operations.",
+                "Optimize for scalability.",
+                "Implement security measures.",
+                "Set up performance monitoring."
+            ]
+        },
+        "External Services": {
+            "Integrations": [
+                "Court Systems: Retrieve documents from court systems.",
+                "Document Storage: Securely store and manage documents.",
+                "Supabase: Handle database operations."
+            ],
+            "Pseudo Code Summaries": [
+                "Integrate with court systems.",
+                "Implement secure document storage.",
+                "Utilize Supabase.",
+                "Optimize API calls.",
+                "Implement redundancy."
+            ]
+        },
+        "Intelligent Intake": {
+            "Features": [
+                "Dynamic Collection: Collect data based on user input.",
+                "Case Analysis: Classification: Classify legal cases.",
+                "Document Retrieval: Automatically retrieve documents.",
+                "Document Mapping: Map attributes to questions.",
+                "Null Checks: Perform null checks and loop through collections.",
+                "Document Generation: Generate tailored documents."
+            ],
+            "Pseudo Code Summaries": [
+                "Implement dynamic data collection.",
+                "Classify legal cases.",
+                "Retrieve documents automatically.",
+                "Map attributes to questions.",
+                "Perform null checks.",
+                "Generate tailored documents.",
+                "Adapt questions based on answers.",
+                "Provide tooltips and guidance."
+            ]
+        },
+        "Components": {
+            "User Interface": {
+                "Description": "Create an interview-style interface to collect personal and case information. Validate inputs in real-time, allow saving progress, and provide confirmation screens before submission. Implement a step-by-step interview process to guide users through the form completion."
+            },
+            "Cloudflare Worker AI": {
+                "Description": "Analyze text input to extract case attributes and return structured JSON. Utilize AI for case analysis and document retrieval."
+            },
+            "Document Retrieval": {
+                "Description": "Retrieve documents based on case analysis and personal information. Automate document retrieval to streamline the process."
+            },
+            "Document Preprocessing": {
+                "Description": "Preprocess documents and map variables to input fields. Automate document preprocessing and mapping to ensure accuracy and efficiency."
+            },
+            "Question Generation": {
+                "Description": "Generate questions for null attributes until all values are resolved. Implement dynamic question generation based on document attributes and user input."
+            },
+            "Review and Submission": {
+                "Description": "Allow users to review and edit answers before submission. Submit data to Cloudflare Workers for storage in Supabase. Provide a comprehensive review process to ensure data accuracy before final submission."
+            }
+        },
+        "Implementation Process": {
+            "Pseudo Code Summaries": [
+                "Develop an interview-style interface:",
+                "Create a user-friendly interface that asks questions in an interview fashion to keep the user focused.",
+                "Use ${Chosen Framework TBD} components to build a responsive and accessible UI.",
+                "Implement navigation controls to guide users through the interview process.",
+                "Collect personal and case information:",
+                "Design forms to collect generic personal information and specific details about the legal case.",
+                "Use ${Chosen Framework TBD} form controls and validation to ensure data integrity.",
+                "Store collected data in a structured format for further processing.",
+                "Analyze text input with AI:",
+                "Implement Cloudflare Workers to analyze open-ended text input from users.",
+                "Use AI models to extract relevant case attributes from the text.",
+                "Return a structured JSON object with the extracted attributes.",
+                "Retrieve documents based on analysis:",
+                "Integrate with court systems to retrieve relevant documents based on the case analysis.",
+                "Automate the document retrieval process to reduce manual effort.",
+                "Ensure secure and reliable access to external document sources.",
+                "Preprocess and map document variables:",
+                "Preprocess downloaded documents to extract relevant information.",
+                "Map variables from the Case object to corresponding input fields in the forms.",
+                "Automate the preprocessing and mapping to ensure accuracy and efficiency.",
+                "Generate questions for null attributes:",
+                "Identify null attributes in the document mapping.",
+                "Generate dynamic questions to collect missing information from the user.",
+                "Continue generating questions until all null values are resolved.",
+                "Allow review and editing before submission:",
+                "Provide a review screen for users to review and edit their answers before final submission.",
+                "Implement functionality to navigate back to previous questions and make changes.",
+                "Ensure that all required fields are completed before allowing submission.",
+                "Validate inputs in real-time:",
+                "Implement real-time validation for user inputs to reduce errors.",
+                "Provide clear and user-friendly error messages for invalid inputs.",
+                "Use ${Chosen Framework TBD} form validation features to ensure data integrity.",
+                "Implement save progress functionality:",
+                "Allow users to save their progress and resume later.",
+                "Store the current state of the form in local storage or a backend database.",
+                "Provide a mechanism for users to load their saved progress and continue from where they left off.",
+                "Provide confirmation screens before submission:",
+                "Display a confirmation screen before final submission to ensure users have reviewed their answers.",
+                "Summarize the collected information and highlight any missing or invalid fields.",
+                "Allow users to confirm or go back to make changes before submitting the form."
+            ]
+        }
+    },
+    "Analysis Parameters": {
+        "Purpose": "Establish Optimal Framework Stack for Frontend Development",
+        "Weighted Criteria": {
+            "Established Compiler Technology": 2,
+            "Community and Ecosystem": 2,
+            "JavaScript Interoperability": 2,
+            "Aesthetics": 1,
+            "Functional": 3,
+            "Supportive Framework Exists": 1,
+            "Performance": 1,
+            "Ease of Use": 2,
+            "Tooling": 3,
+            "Type Safety": 3,
+            "Predictable": 2
+        },
+        "Languages": {
+            "Suggest Recommended Framework": true,
+            "Candidates": [
+                "Elm",
+                "PureScript"
+            ],
+            "Search For More Candidates": false
+        },
+        "Builders": {
+            "Candidates": [
+                "Vite"
+            ],
+            "Search For More Candidates": false
+        },
+        "Output Configuration": {
+            "Optimal Framework Stack": true,
+            "Allow Copilot Weight Adjustments": true,
+            "Language Analysis Scoring": true,
+            "Scoring Method": "Weighted Criteria",
+            "Format Stack": {
+                "Required": true,
+                "Schema": "Markdown",
+                "Example": "Frontend:\n- $Lang 0.19.1\n- $Lang-ui (for layout)\n- $Lang-form (for form handling)\n- $Lang-test (for testing)\n\nBuild Tools:\n- $Build\n- $Build-plugin-$Lang\n- $Lang-format\n- $Lang-review\n\nDevelopment:\n- $Lang-language-server\n- $Lang-test-runner\n- $Lang-format"
+            },
+            "Descibe Backened Implementation": true
+        }
+    }
+}

@@ -1,4 +1,4 @@
-Feature Brainstorming / Idea Workspace
+
 
 # var: Last Update Sent
 # 	desc: most recent occurrenct of client recieving update from the firm regarding case status
